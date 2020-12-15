@@ -1,16 +1,19 @@
 {
   "scripts": {
+    "2020": "node runYear 2020",
     "lint": "eslint --color ."
   },
   "husky": {
     "hooks": {
-      "post-commit": "npm run lint"
+      "post-commit": "npm run lint && npm run 2020"
     }
   },
   "dependencies": {
+    "ansi-colors": "^4.1.1",
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "glob": "^7.1.6",
     "husky": "^4.3.6"
   }
 }
