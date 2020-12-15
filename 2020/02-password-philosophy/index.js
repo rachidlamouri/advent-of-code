@@ -14,7 +14,12 @@ const validInputsForRule1 = loadInput(__dirname)
       password,
     };
   })
-  .filter(({ letter, min, max, password }) => {
+  .filter(({
+    letter,
+    min,
+    max,
+    password,
+  }) => {
     const letterCount = password
       .split('')
       .filter((nextLetter) => nextLetter === letter)
@@ -24,7 +29,7 @@ const validInputsForRule1 = loadInput(__dirname)
     return letterCount >= min && letterCount <= max;
   });
 
-console.log('Number of rule 1 valid inputs:', validInputsForRule1.length)
+console.log('Number of rule 1 valid inputs:', validInputsForRule1.length);
 
 const validInputsForRule2 = loadInput(__dirname)
   .map((line) => {
@@ -40,7 +45,12 @@ const validInputsForRule2 = loadInput(__dirname)
       password,
     };
   })
-  .filter(({ letter, index1, index2, password }) => {
+  .filter(({
+    letter,
+    index1,
+    index2,
+    password,
+  }) => {
     const passwordLetters = password.split('');
 
     const isAtPosition1 = passwordLetters[index1] === letter;
@@ -49,7 +59,7 @@ const validInputsForRule2 = loadInput(__dirname)
     return (
       (isAtPosition1 && !isAtPosition2)
       || (!isAtPosition1 && isAtPosition2)
-    )
+    );
   });
 
-console.log('Number of rule 2 valid inputs:', validInputsForRule2.length)
+console.log('Number of rule 2 valid inputs:', validInputsForRule2.length);

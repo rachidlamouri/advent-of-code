@@ -15,7 +15,7 @@ const slopes = [
 const getTreeCount = (slope) => {
   const [right, down] = slope;
   console.log(`Slope: {down: ${down}, right: ${right}}`);
-  console.log('[row, col] Trees Hit')
+  console.log('[row, col] Trees Hit');
 
   const position = {
     col: 0,
@@ -28,19 +28,17 @@ const getTreeCount = (slope) => {
     position.row += down;
 
     if (position.col >= colLength) {
-      position.col = position.col % colLength;
+      position.col %= colLength;
     }
-  }
+  };
 
-  const checkTree = () => (
-    treeCount += terrain[position.row][position.col] === '#'
-      ? 1
-      : 0
-  )
+  const checkTree = () => {
+    treeCount += terrain[position.row][position.col] === '#' ? 1 : 0;
+  };
 
   const printStatus = () => {
-    console.log(`[${position.row}, ${position.col}]`, treeCount)
-  }
+    console.log(`[${position.row}, ${position.col}]`, treeCount);
+  };
 
   do {
     // printStatus();
@@ -52,10 +50,10 @@ const getTreeCount = (slope) => {
   console.log();
 
   return treeCount;
-}
+};
 
 const product = slopes
   .map(getTreeCount)
-  .reduce((product, treeCount) => product * treeCount, 1)
+  .reduce((rollingProduct, treeCount) => rollingProduct * treeCount, 1);
 
 console.log('Product of trees hit for all slopes:', product);

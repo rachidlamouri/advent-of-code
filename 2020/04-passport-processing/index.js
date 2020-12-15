@@ -4,14 +4,14 @@ const passports = loadInput(__dirname)
   .reduce(
     (lineGroups, line) => {
       if (line === '') {
-        lineGroups.push([])
+        lineGroups.push([]);
       } else {
-        lineGroups[lineGroups.length - 1].push(line)
+        lineGroups[lineGroups.length - 1].push(line);
       }
 
       return lineGroups;
     },
-    [[]]
+    [[]],
   )
   .map((lineGroup) => {
     const passportLine = lineGroup.join(' ');
@@ -23,7 +23,7 @@ const passports = loadInput(__dirname)
 
     return fields.reduce(
       (passport, field) => {
-        passport[field.key] = field.value;
+        passport[field.key] = field.value; // eslint-disable-line no-param-reassign
         return passport;
       },
       {},
@@ -52,7 +52,7 @@ const fieldRules = {
 
     return isCm
       ? validateCm(valuePart)
-      : validateIn(valuePart)
+      : validateIn(valuePart);
   },
   hcl: (value) => /^#[0-9a-f]{6}$/.test(value),
   ecl: (value) => [
@@ -65,12 +65,12 @@ const fieldRules = {
     'oth',
   ].includes(value),
   pid: (value) => /^[0-9]{9}$/.test(value),
-}
+};
 
 const passportsWithRequiredFields = passports
   .filter((passport) => (
     Object.keys(fieldRules).every((expectedKey) => passport[expectedKey] !== undefined)
-  ))
+  ));
 
 console.log('Passports with required fields:', passportsWithRequiredFields.length);
 
@@ -79,4 +79,4 @@ const validPassports = passportsWithRequiredFields
     Object.entries(fieldRules).every(([field, rule]) => rule(passport[field]))
   ));
 
-console.log('Valid passports:', validPassports.length)
+console.log('Valid passports:', validPassports.length);
