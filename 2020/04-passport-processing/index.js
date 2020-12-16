@@ -1,18 +1,6 @@
 const loadInput = require('../../loadInput');
 
-const passports = loadInput(__dirname)
-  .reduce(
-    (lineGroups, line) => {
-      if (line === '') {
-        lineGroups.push([]);
-      } else {
-        lineGroups[lineGroups.length - 1].push(line);
-      }
-
-      return lineGroups;
-    },
-    [[]],
-  )
+const passports = loadInput(__dirname, { groupLines: true })
   .map((lineGroup) => {
     const passportLine = lineGroup.join(' ');
     const fieldStrings = passportLine.split(' ');
